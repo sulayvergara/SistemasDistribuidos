@@ -28,5 +28,29 @@ services:
     networks:
       - app-network  # Asegúrate de que esté conectado a la red
 
+  producto-service:
+    build:
+      context: ./producto
+    ports:
+      - "3001:3001"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/producto
+    depends_on:
+      - mongo
+    networks:
+      - app-network  # Asegúrate de que esté conectado a la red
+
+  auth-usuario-service:
+    build:
+      context: ./auth
+    ports:
+      - "3002:3002"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/auth
+    depends_on:
+      - mongo
+    networks:
+      - app-network  # Asegúrate de que esté conectado a la red
+
 volumes:
   mongo-data:

@@ -2,8 +2,8 @@ const User = require('../models/user.model');
 
 const registerUser = async (req, res) => {
     try {
-        const { name, email, password } = req.body;
-        const newUser = new User({ name, email, password });
+        const { nombre, correo, clave } = req.body;
+        const newUser = new User({ nombre, correo, clave });
         await newUser.save();
         res.status(201).json({ message: 'Usuario registrado exitosamente' });
     } catch (error) {
